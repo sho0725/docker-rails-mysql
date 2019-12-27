@@ -7,8 +7,8 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - ./db:/var/lib/mysql 
       - mysql_data:/var/lib/mysql
+      - ./my.cnf:/etc/mysql/conf.d/my.cnf
     networks:
       - rails-mysql
     env_file: ./password.env
@@ -31,5 +31,6 @@ services:
 volumes:
   mysql_data:
 networks:
-  driver: bridge
+  rails-mysql:
+    external: true
 
